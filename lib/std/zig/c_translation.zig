@@ -586,6 +586,13 @@ pub const MacroArithmetic = struct {
             else => unreachable,
         }
     }
+
+    pub fn bitOr(a: anytype, b: anytype) ArithmeticConversion(@TypeOf(a), @TypeOf(b)) {
+        const ResType = ArithmeticConversion(@TypeOf(a), @TypeOf(b));
+        const a_casted = cast(ResType, a);
+        const b_casted = cast(ResType, b);
+        return a_casted | b_casted;
+    }
 };
 
 test "Macro suffix functions" {

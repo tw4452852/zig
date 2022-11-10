@@ -6096,7 +6096,7 @@ fn parseCBitOrExpr(c: *Context, m: *MacroCtx, scope: *Scope) ParseError!Node {
     while (m.next().? == .Pipe) {
         const lhs = try macroBoolToInt(c, node);
         const rhs = try macroBoolToInt(c, try parseCBitXorExpr(c, m, scope));
-        node = try Tag.bit_or.create(c.arena, .{ .lhs = lhs, .rhs = rhs });
+        node = try Tag.macro_arithmetic.create(c.arena, .{ .op = .bitOr, .lhs = lhs, .rhs = rhs });
     }
     m.i -= 1;
     return node;
